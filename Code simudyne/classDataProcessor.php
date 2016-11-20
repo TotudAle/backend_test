@@ -37,6 +37,10 @@
 		*/
 		public function __construct($nbYears,$brandFactor)
 		{
+			if (!is_int($nbYears) || !is_float($brandFactor))
+			{
+				exit("ERROR : wrong types passed to instanciate a DataProcessor object" . EOL);
+			}
 			$this->_nbYears=$nbYears;
 			$this->_brandFactor=$brandFactor;
 			$this->_resultProcess= new ResultProcessing;
@@ -67,7 +71,11 @@
 		
 		public function processing($dataSet)
 		{
-			
+			//Check if dataSet is an array
+			if (!is_array($dataSet))
+			{
+				exit("ERROR : wrong type passed to method processing()" . EOL);
+			}
 			$this->_resultProcess->resetResult();
 			
 			
@@ -142,6 +150,13 @@
 		
 		private function switchToBreedC($data)
 		{
+			// Check if $data is an object
+			if (!is_object($data))
+			{
+				exit("ERROR : wrong type passed to method switchToBreedC()" . EOL);
+			}
+			
+			
 			if($data->getAffinity() < ($data->getSocialGrade() * $data->getAttributeBrand() * $this->_brandFactor))
 			{
 				$data->setAgentBreed("Breed_C");
@@ -164,6 +179,13 @@
 		
 		private function switchToBreedNC($data)
 		{
+			// Check if $data is an object
+			if (!is_object($data))
+			{
+				exit("ERROR : wrong type passed to method switchToBreedNC()" . EOL);
+			}
+			
+			
 			if($data->getAffinity() < ($data->getSocialGrade() * $data->getAttributeBrand()))
 			{
 				$data->setAgentBreed("Breed_NC");

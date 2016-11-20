@@ -72,6 +72,12 @@
 				exit("ERROR : file already exists" . EOL);
 			}
 			
+			// Check if the parameters have the right type
+			if (!is_array($dataSet) || !is_string($fname) || !is_int((int)$nbCols) || !is_int((int)$nbRows))
+			{
+				exit("ERROR : wrong types passed to method writeData()" . EOL);
+			}
+			
 			// Create new PHPExcel object
 			$objPHPExcel = new PHPExcel();
 			

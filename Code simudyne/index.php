@@ -31,7 +31,7 @@
 	}
 	else{
 	// We process the data with the brand factor that the user chose
-		$vbrandFactor=$_POST['BrandFactor'];
+		$vbrandFactor=(float)$_POST['BrandFactor'];
 		$extractor= DataExtractor::getInstance();
 		$resultExtraction=$extractor->exctractData("AgentTest.xlsx");
 		$arrayOfData=$resultExtraction[0];

@@ -1,5 +1,13 @@
 <?php
 
+	// Show errors and warnings
+	error_reporting(E_ALL);
+	ini_set('display_errors', TRUE);
+	ini_set('display_startup_errors', TRUE);
+
+	define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+
+
 /**
 *
 * Here you will find the class Data. One instance will correspond to one row in our Excel file
@@ -41,6 +49,11 @@
 		
 		public function __construct($ag,$pId,$age,$sg,$pap,$attB,$attPrice,$attPromo,$ar,$ifs)
 		{
+			// Check the types of the parameters -> couldn't handle the floats yet because of the PHPExcel object that i have to analyse more
+			if (!is_string($ag) || !is_int((int)$pId) || !is_int((int)$sg) || !is_int((int)$pap) || !is_int((int)$ar) || !is_int((int)$ifs))
+			{
+				exit("ERROR : wrong types in order to instanciate the data" . EOL);
+			}
 			$this->_agentBreed=$ag;
 			$this->_policyID=$pId;
 			$this->_age=$age;
@@ -184,6 +197,11 @@
 		
 		public function setAge($age)
 		{
+			// check the type of the parameter $age
+			if (!is_int((int)$age))
+			{
+				exit("ERROR : wrong types passed to method setAge()" . EOL);
+			}
 			$this->_age=$age;
 		}
 		
@@ -199,6 +217,10 @@
 		
 		public function setAgentBreed($agentBreed)
 		{
+			if (!is_string($agentBreed))
+			{
+				exit("ERROR : wrong types passed to method setAgentBreed()" . EOL);
+			}
 			$this->_agentBreed=$agentBreed;
 		}
 		
