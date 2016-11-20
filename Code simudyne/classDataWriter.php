@@ -66,10 +66,10 @@
 		
 		public function writeData($dataSet,$fname,$nbCols,$nbRows)
 		{
-			// We don't allow the overwritting of a file
+			// If a file of this name already exists then we change a bit the name of the file that we will create
 			if (file_exists($fname.".xlsx"))
 			{
-				exit("ERROR : file already exists" . EOL);
+				$fname=$fname."(1)";
 			}
 			
 			// Check if the parameters have the right type
