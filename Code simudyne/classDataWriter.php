@@ -69,7 +69,13 @@
 			// If a file of this name already exists then we change a bit the name of the file that we will create
 			if (file_exists($fname.".xlsx"))
 			{
-				$fname=$fname."(1)";
+				// we create another version of the file
+				$i=1;
+				while (file_exists($fname."(".$i.")".".xlsx"))
+				{
+					$i=$i+1;
+				}
+				$fname=$fname."(".$i.")";
 			}
 			
 			// Check if the parameters have the right type
